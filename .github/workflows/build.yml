@@ -20,11 +20,15 @@ jobs:
         dotnet-version: ["3.1.x"]
         pact_provider:
           [
-            # "pactflow-example-provider-dredd",
-            # "pactflow-example-provider-restassured",
-            # "pactflow-example-provider-postman",
+            "pactflow-example-provider-dredd",
+            "pactflow-example-provider-restassured",
+            "pactflow-example-provider-postman",
             # "pactflow-example-provider",
-            'pactflow-provider-dotnet'
+          ]
+        pact_consumer:
+          [
+            "pactflow-example-consumer",
+            "pactflow-example-consumer-nock"
           ]
     steps:
       - uses: actions/checkout@v2
@@ -35,10 +39,12 @@ jobs:
       - name: test for ${{ matrix.pact_provider }}
         run: GIT_BRANCH=${GITHUB_REF:11} make test
         env:
+          PACTICIPANT: ${{ matrix.pact_consumer }}
           PACT_PROVIDER: ${{ matrix.pact_provider }}
       - name: Publish pacts for ${{ matrix.pact_provider }}
         run: GIT_BRANCH=${GITHUB_REF:11} make publish_pacts
         env:
+          PACTICIPANT: ${{ matrix.pact_consumer }}
           PACT_PROVIDER: ${{ matrix.pact_provider }}
         
 
