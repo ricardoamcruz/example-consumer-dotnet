@@ -2,7 +2,7 @@
 # It's set as a secure environment variable in the .travis.yml file
 PACTICIPANT := "pactflow-example-consumer-dotnet"
 GITHUB_WEBHOOK_UUID := "e0d3dd92-d69a-40f7-a58b-7d5f0c739028"
-PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:latest"
+PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli"
 
 # Only deploy from master
 ifeq ($(GIT_BRANCH),master)
