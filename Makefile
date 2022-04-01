@@ -59,15 +59,14 @@ can_i_deploy:
 	@"${PACT_CLI}" broker can-i-deploy \
 	  --pacticipant ${PACTICIPANT} \
 	  --version ${GIT_COMMIT} \
-	  --to prod \
 	  --retry-while-unknown 0 \
 	  --retry-interval 10
 
 deploy_app:
-	@echo "Deploying to prod"
+	@echo "Deploying"
 
 tag_as_prod:
-	@"${PACT_CLI}" broker create-version-tag --pacticipant ${PACTICIPANT} --version ${GIT_COMMIT} --tag prod
+	@"${PACT_CLI}" broker create-version-tag --pacticipant ${PACTICIPANT} --version ${GIT_COMMIT}
 
 ## =====================
 ## Pactflow set up tasks
