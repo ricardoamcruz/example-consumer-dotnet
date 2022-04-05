@@ -16,9 +16,9 @@ namespace Consumer
     public class ProductClient
     {
         #nullable enable
-        public async Task<System.Collections.Generic.List<Product>> GetProducts(string baseUrl, HttpClient? httpClient = null)
+        public async Task<List<Product>> GetProducts(string baseUrl, HttpClient? httpClient = null)
         {
-            using var client = httpClient == null ? new HttpClient() : httpClient;
+            using var client = httpClient ?? new HttpClient();
 
             var response = await client.GetAsync(baseUrl + "/products");
             response.EnsureSuccessStatusCode();
